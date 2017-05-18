@@ -10,6 +10,8 @@ import static org.testng.Assert.*;
 public class WordChainsTest {
     @Test
     public void testGetChains() throws Exception {
+
+
     }
 
     @Test

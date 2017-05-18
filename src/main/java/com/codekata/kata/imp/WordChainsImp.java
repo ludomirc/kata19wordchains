@@ -1,4 +1,4 @@
-package imp;
+package com.codekata.kata.imp;
 
 import com.codekata.kata.WordChains;
 
