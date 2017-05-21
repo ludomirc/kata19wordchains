@@ -20,12 +20,12 @@ public class WordChainsImp implements WordChains {
     }
 
     @Override
-    public Collection<CharSequence> getChains() {
+    public Collection<String> getChains() {
         return null;
     }
 
     @Override
-    public void setPuzzleWords(CharSequence wordFrom, CharSequence wordTo) {
+    public void setPuzzleWords(String wordFrom, String wordTo) {
             this.wordFrom = (String) wordFrom;
             this.wordTo = (String) wordTo;
     }
