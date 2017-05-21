@@ -16,16 +16,9 @@ public class DictionaryImpTest {
 
     private static Logger logger = LogManager.getLogger(DictionaryImpTest.class.getName());
 
-    private String expectedWorld[];
-
     @DataProvider(name = "wordTest1")
     public static Object[][] primeNumbers() {
         return new Object[][]{{"cat", true}, {"ola", false}, {"lead", true}, {"", false}, {"code", true}};
-    }
-
-    @BeforeMethod
-    public void setUp() throws Exception {
-        expectedWorld = new String[]{"ala", "pies", "kot"};
     }
 
     @Test
