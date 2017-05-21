@@ -7,10 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-
-import java.util.Arrays;
-
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by Benek on 18.05.2017.
@@ -21,15 +18,14 @@ public class DictionaryImpTest {
 
     private String expectedWorld[];
 
-    @BeforeMethod
-    public void setUp() throws Exception {
-        expectedWorld = new String[]{"ala", "pies", "kot"};
-    }
-
-
     @DataProvider(name = "wordTest1")
     public static Object[][] primeNumbers() {
         return new Object[][]{{"ala", true}, {"ola", false}, {"kot", true}, {"", false}, {"pies", true}};
+    }
+
+    @BeforeMethod
+    public void setUp() throws Exception {
+        expectedWorld = new String[]{"ala", "pies", "kot"};
     }
 
     @Test
