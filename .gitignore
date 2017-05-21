@@ -3,3 +3,4 @@
 *.iml
 modules.xml
 /target/
+**/applog.log
