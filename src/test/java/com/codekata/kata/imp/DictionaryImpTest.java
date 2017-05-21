@@ -20,7 +20,7 @@ public class DictionaryImpTest {
 
     @DataProvider(name = "wordTest1")
     public static Object[][] primeNumbers() {
-        return new Object[][]{{"ala", true}, {"ola", false}, {"kot", true}, {"", false}, {"pies", true}};
+        return new Object[][]{{"cat", true}, {"ola", false}, {"lead", true}, {"", false}, {"code", true}};
     }
 
     @BeforeMethod
@@ -35,7 +35,7 @@ public class DictionaryImpTest {
 
         logger.info("testLoadDictionary start...");
         int actual = dictionary.size();
-        int expected = 3;
+        int expected = 14;
         assertEquals(actual, expected);
         logger.info("testLoadDictionary passed");
     }
