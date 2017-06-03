@@ -10,40 +10,45 @@ public class WordBreak {
     private String solution;
 
     public static void main(String[] args) {
-        HashSet<String> hs = new HashSet<String>();
-        hs.add("cat");
-        hs.add("cot");
-        hs.add("cog");
-        hs.add("dog");
-        hs.add("lead");
-        hs.add("load");
-        hs.add("goad");
-        hs.add("gold");
+        short startIndex = 1;
+        HashSet<String> dictionary = new HashSet<String>();
+        dictionary.add("cat");
+        dictionary.add("cot");
+        dictionary.add("cog");
+        dictionary.add("dog");
+        dictionary.add("lead");
+        dictionary.add("load");
+        dictionary.add("goad");
+        dictionary.add("gold");
 
 
-        hs.add("ruby");
-        hs.add("rubs");
-        hs.add("robs");
-        hs.add("rods");
-        hs.add("rode");
-        hs.add("code");
+        dictionary.add("ruby");
+        dictionary.add("rubs");
+        dictionary.add("robs");
+        dictionary.add("rods");
+        dictionary.add("rode");
+        dictionary.add("code");
+
+
+        dictionary.add("cood");
+        dictionary.add("xood");
 
         WordBreak ws = new WordBreak();
-        String s = "lead";
+        String startWord = "cood";
+        String finishWord = "xood";
+
+
         // create another HashSet so store the sub problems result
-        HashSet<String> memoization = new HashSet<String>();
-        String answer = s + " ";
+        String answer = startWord + " ";
 
-        List<String> memAnswer = new LinkedList<String>();
 
-        boolean solved = ws.findUsingDP(s, "gold", hs, memoization, answer, (short) 1);
+        boolean solved = ws.findUsingDP(startWord, finishWord, dictionary, answer, startIndex);
 
         System.out.println(" solved: " + solved + " solution: " + ws.getSolution());
         System.out.println("my mem: " + ws.myMemory);
-        System.out.println(memoization);
     }
 
-    public boolean findUsingDP(String startWord, String endWord, HashSet<String> dictionary, HashSet<String> memory, String answer, short position) {
+    public boolean findUsingDP(String startWord, String endWord, HashSet<String> dictionary, String answer, short position) {
         System.out.println("call findUsingDP  input word: " + startWord);
 
         if (startWord.compareTo(endWord) == 0) {
@@ -52,45 +57,40 @@ public class WordBreak {
 
             return true;
 
-        } else if (memory.contains(startWord) || position < 0 || position >= startWord.length()) {
-            System.out.println("return false memory: " + startWord + " position:" + position);
-            return false;
-
         } else {
 
-            char ch = 'a';
-            char[] cWord = startWord.toCharArray();
-            String nWord = "";
+            char currentChar = 'a';
+            char[] tmpWord = startWord.toCharArray();
+            String newWord = "";
 
-            char startChar = cWord[position];
-            ch = setStartChar(startChar);
+            char startChar = tmpWord[position];
+            currentChar = setStartChar(startChar);
 
-            while (ch != startChar) {
+            while (startChar != currentChar) {
 
-                cWord[position] = ch;
-                nWord = new String(cWord);
-                System.out.println("position: " + position + " nWord: " + nWord);
+                tmpWord[position] = currentChar;
+                newWord = new String(tmpWord);
+                System.out.println("position: " + position + " nWord: " + newWord);
 
 
-                if (dictionary.contains(nWord)) {
-                    dictionary.remove(nWord);
+                if (dictionary.contains(newWord)) {
+                    dictionary.remove(newWord);
 
-                    for (short i = 0; i < nWord.length(); i++) {
-                        if (findUsingDP(nWord, endWord, dictionary, memory, answer + nWord + " ", i)) {
-                            myMemory.add(nWord);
+                    for (short i = 0; i < newWord.length(); i++) {
+                        if (findUsingDP(newWord, endWord, dictionary, answer + newWord + " ", i)) {
+                            myMemory.add(newWord);
                             return true;
                         }
                     }
                 }
-                ch++;
-                if (ch > 'z') {
-                    ch = 'a';
+
+                currentChar++;
+
+                if (currentChar > 'z') {
+                    currentChar = 'a';
                 }
 
             }
-
-            //memory.add(startWord);
-            System.out.println("memxx: " + memory);
             return false;
         }
     }
