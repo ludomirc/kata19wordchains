@@ -28,7 +28,7 @@ public class WordPuzzleImp implements WordPuzzle {
     }
 
     @Override
-    public Collection<String> getChains() {
+    public Collection<String> findTransition() {
 
         List<String> solution = new LinkedList<String>();
         int startPosition = 0;

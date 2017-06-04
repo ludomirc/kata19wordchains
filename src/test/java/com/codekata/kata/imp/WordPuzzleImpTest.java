@@ -18,10 +18,10 @@ public class WordPuzzleImpTest {
         DictionaryImp dictionary = new DictionaryImp();
         dictionary.loadDictionary(DictionaryImpTest.class.getResourceAsStream("test-dictionary.txt"));
 
-        WordPuzzle wordChains = new WordPuzzleImp(dictionary);
+        WordPuzzle puzz = new WordPuzzleImp(dictionary);
 
-        wordChains.setPuzzleWords("cat","dog");
-        List<String> actual = (List<String>) wordChains.getChains();
+        puzz.setPuzzleWords("cat", "dog");
+        List<String> actual = (List<String>) puzz.findTransition();
 
 
     }
