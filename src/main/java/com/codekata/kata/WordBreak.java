@@ -6,8 +6,6 @@ import java.util.List;
 
 public class WordBreak {
 
-    private String solution;
-
     public static void main(String[] args) {
         short startIndex = 0;
         HashSet<String> dictionary = new HashSet<String>();
@@ -43,39 +41,33 @@ public class WordBreak {
         String startWord = "ala";
         String finishWord = "olo";
 
-
-        // create another HashSet so store the sub problems result
-        String answer = startWord + " ";
         List<String> memory = new LinkedList<>();
 
         boolean solved = ws.findUsingDP(startWord, finishWord, dictionary, memory, startIndex);
-
-        System.out.println(" solved: " + solved + " solution: " + ws.getSolution());
-
-        System.out.println(memory);
+        System.out.println(" solved: " + solved + " solution: " + memory);
     }
 
-    public boolean findUsingDP(String startWord, String endWord, HashSet<String> dictionary, List<String> answerMem, int position) {
+    public boolean findUsingDP(String startWord, String endWord, HashSet<String> dictionary, List<String> answerMemory, int position) {
 
         //found solution
         if (startWord.compareTo(endWord) == 0) {
-            answerMem.add(startWord);
+            answerMemory.add(startWord);
             return true;
         }
 
-        //bad track word in memory
-        if (answerMem.contains(startWord)) {
+        //bad path, word in memory
+        if (answerMemory.contains(startWord)) {
             return false;
         }
 
-
-        answerMem.add(startWord);
+        //add path to memory
+        answerMemory.add(startWord);
         int tmpPosition = position;
 
         do {
             char[] tmpWord = startWord.toCharArray();
             char startChar = tmpWord[position];
-            char currentChar = setStartChar(startChar);
+            char currentChar = shiftChar(startChar);
 
             String newWord = "";
             while (startChar != currentChar) {
@@ -85,50 +77,30 @@ public class WordBreak {
 
                 if (dictionary.contains(newWord)) {
                     for (short i = 0; i < newWord.length(); i++) {
-                        if (findUsingDP(newWord, endWord, dictionary, answerMem, i)) {
+                        if (findUsingDP(newWord, endWord, dictionary, answerMemory, i)) {
                             return true;
                         }
                     }
                 }
 
-                currentChar++;
-
-                if (currentChar > 'z') {
-                    currentChar = 'a';
-                }
+                currentChar = shiftChar(currentChar);
             }
             tmpPosition++;
             position = tmpPosition;
-            System.out.println("cntr: " + tmpPosition);
+
         } while (tmpPosition < startWord.length());
 
-        //remove form answer bad track
-        answerMem.remove(startWord);
+        //remove form answer, bad path
+        answerMemory.remove(startWord);
         return false;
 
     }
 
-    private char setStartChar(char startChar) {
+    private char shiftChar(char inputChar) {
         char ch;
-        if (startChar != 'z') {
-            ch = (char) (startChar + 1);
+        if (inputChar < 'z') {
+            ch = (char) (inputChar + 1);
         } else ch = 'a';
         return ch;
-    }
-
-    /**
-     * function cheack if char is in start and final solution block the letter
-     *
-     * @param index
-     * @param startCondition
-     * @param finalCondition
-     * @return true if char is in start and final word, else false
-     */
-    private boolean isBlockIndex(int index, String startCondition, String finalCondition) {
-        return startCondition.charAt(index) == finalCondition.charAt(index);
-    }
-
-    public String getSolution() {
-        return solution;
     }
 }
