@@ -6,11 +6,10 @@ import java.util.List;
 
 public class WordBreak {
 
-    List<String> myMemory = new LinkedList<String>();
     private String solution;
 
     public static void main(String[] args) {
-        short startIndex = 1;
+        short startIndex = 0;
         HashSet<String> dictionary = new HashSet<String>();
         dictionary.add("cat");
         dictionary.add("cot");
@@ -30,65 +29,81 @@ public class WordBreak {
         dictionary.add("code");
 
 
-        dictionary.add("cood");
-        dictionary.add("xood");
+        dictionary.add("coosd");
+        dictionary.add("xoosd");
+
+
+        dictionary.add("ala");
+        dictionary.add("ali");
+        dictionary.add("ola");
+        dictionary.add("olo");
+
 
         WordBreak ws = new WordBreak();
-        String startWord = "lead";
-        String finishWord = "gold";
+        String startWord = "ala";
+        String finishWord = "olo";
 
 
         // create another HashSet so store the sub problems result
         String answer = startWord + " ";
+        List<String> memory = new LinkedList<>();
 
-
-        boolean solved = ws.findUsingDP(startWord, finishWord, dictionary, answer, startIndex);
+        boolean solved = ws.findUsingDP(startWord, finishWord, dictionary, memory, startIndex);
 
         System.out.println(" solved: " + solved + " solution: " + ws.getSolution());
-        System.out.println("my mem: " + ws.myMemory);
+
+        System.out.println(memory);
     }
 
-    public boolean findUsingDP(String startWord, String endWord, HashSet<String> dictionary, String answer, short position) {
-        System.out.println("call findUsingDP  input word: " + startWord);
+    public boolean findUsingDP(String startWord, String endWord, HashSet<String> dictionary, List<String> answerMem, int position) {
 
+        //found solution
         if (startWord.compareTo(endWord) == 0) {
-            solution = answer;
-            System.out.println("xxx " + answer);
-
+            answerMem.add(startWord);
             return true;
-
         }
 
-        char[] tmpWord = startWord.toCharArray();
-        char startChar = tmpWord[position];
-        char currentChar = setStartChar(startChar);
-
-        String newWord = "";
-        while (startChar != currentChar) {
-
-            tmpWord[position] = currentChar;
-            newWord = new String(tmpWord);
-            System.out.println("position: " + position + " nWord: " + newWord);
+        //bad track word in memory
+        if (answerMem.contains(startWord)) {
+            return false;
+        }
 
 
-            if (dictionary.contains(newWord)) {
-                dictionary.remove(newWord);
+        answerMem.add(startWord);
+        int tmpPosition = position;
 
-                for (short i = 0; i < newWord.length(); i++) {
-                    if (findUsingDP(newWord, endWord, dictionary, answer + newWord + " ", i)) {
-                        myMemory.add(newWord);
-                        return true;
+        do {
+            char[] tmpWord = startWord.toCharArray();
+            char startChar = tmpWord[position];
+            char currentChar = setStartChar(startChar);
+
+            String newWord = "";
+            while (startChar != currentChar) {
+
+                tmpWord[position] = currentChar;
+                newWord = new String(tmpWord);
+
+                if (dictionary.contains(newWord)) {
+                    for (short i = 0; i < newWord.length(); i++) {
+                        if (findUsingDP(newWord, endWord, dictionary, answerMem, i)) {
+                            return true;
+                        }
                     }
                 }
+
+                currentChar++;
+
+                if (currentChar > 'z') {
+                    currentChar = 'a';
+                }
             }
+            tmpPosition++;
+            position = tmpPosition;
+            System.out.println("cntr: " + tmpPosition);
+        } while (tmpPosition < startWord.length());
 
-            currentChar++;
-
-            if (currentChar > 'z') {
-                currentChar = 'a';
-            }
-
-        }
+        //remove form answer bad track
+        answerMem.remove(startWord);
         return false;
 
     }
