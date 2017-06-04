@@ -38,8 +38,8 @@ public class WordBreak {
 
 
         WordBreak ws = new WordBreak();
-        String startWord = "ala";
-        String finishWord = "olo";
+        String startWord = "cat";
+        String finishWord = "dog";
 
         List<String> memory = new LinkedList<>();
 
@@ -49,7 +49,7 @@ public class WordBreak {
 
     public boolean findUsingDP(String startWord, String endWord, HashSet<String> dictionary, List<String> answerMemory, int position) {
 
-        //found solution
+        //found solution :)
         if (startWord.compareTo(endWord) == 0) {
             answerMemory.add(startWord);
             return true;
@@ -60,19 +60,18 @@ public class WordBreak {
             return false;
         }
 
-        //add path to memory
+        //add candidate path to memory
         answerMemory.add(startWord);
-        int tmpPosition = position;
 
-        do {
+        for (int tmpPosition = position; tmpPosition < startWord.length(); tmpPosition++) {
             char[] tmpWord = startWord.toCharArray();
-            char startChar = tmpWord[position];
+            char startChar = tmpWord[tmpPosition];
             char currentChar = shiftChar(startChar);
 
             String newWord = "";
             while (startChar != currentChar) {
 
-                tmpWord[position] = currentChar;
+                tmpWord[tmpPosition] = currentChar;
                 newWord = new String(tmpWord);
 
                 if (dictionary.contains(newWord)) {
@@ -85,12 +84,9 @@ public class WordBreak {
 
                 currentChar = shiftChar(currentChar);
             }
-            tmpPosition++;
-            position = tmpPosition;
+        }
 
-        } while (tmpPosition < startWord.length());
-
-        //remove form answer, bad path
+        //remove form memory, bad path
         answerMemory.remove(startWord);
         return false;
 
