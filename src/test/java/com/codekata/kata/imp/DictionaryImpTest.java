@@ -15,8 +15,8 @@ public class DictionaryImpTest {
 
     private static Logger logger = LogManager.getLogger(DictionaryImpTest.class.getName());
 
-    @DataProvider(name = "wordTest1")
-    public static Object[][] primeNumbers() {
+    @DataProvider
+    public static Object[][] wordDataProvider() {
         return new Object[][]{{"cat", true}, {"gol", false}, {"lead", true}, {"", false}, {"code", true}};
     }
 
@@ -32,13 +32,17 @@ public class DictionaryImpTest {
         logger.info("testLoadDictionary passed");
     }
 
-    @Test(dataProvider = "wordTest1")
-    public void testIsExist(String inputWorld, Boolean expected) throws Exception {
+    @Test(dataProvider = "wordDataProvider")
+    public void testContains(String inputWorld, Boolean expected) throws Exception {
+        logger.info("testContains start...");
+
         DictionaryImp dictionary = new DictionaryImp();
         dictionary.loadDictionary(DictionaryImpTest.class.getResourceAsStream("test-dictionary.txt"));
 
         String[] dic = new String[dictionary.size()];
         assertEquals((boolean) dictionary.contains(inputWorld), (boolean) expected, "input value: " + inputWorld + " expected value: " + expected + " dictionary size: " + dictionary.size());
+
+        logger.info("testContains passed");
     }
 
 }

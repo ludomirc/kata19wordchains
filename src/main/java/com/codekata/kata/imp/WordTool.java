@@ -2,55 +2,11 @@ package com.codekata.kata.imp;
 
 import com.codekata.kata.Dictionary;
 
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 
 public final class WordTool {
 
     private WordTool() {
-    }
-
-
-    public static void main(String[] args) {
-        short startIndex = 0;
-        HashSet<String> dictionary = new HashSet<String>();
-        dictionary.add("cat");
-        dictionary.add("cot");
-        dictionary.add("cog");
-        dictionary.add("dog");
-        dictionary.add("lead");
-        dictionary.add("load");
-        dictionary.add("goad");
-        dictionary.add("gold");
-
-
-        dictionary.add("ruby");
-        dictionary.add("rubs");
-        dictionary.add("robs");
-        dictionary.add("rods");
-        dictionary.add("rode");
-        dictionary.add("code");
-
-
-        dictionary.add("coosd");
-        dictionary.add("xoosd");
-
-
-        dictionary.add("ala");
-        dictionary.add("ali");
-        dictionary.add("ola");
-        dictionary.add("olo");
-
-
-        WordTool ws = new WordTool();
-        String startWord = "cat";
-        String finishWord = "dog";
-
-        List<String> memory = new LinkedList<>();
-
-        boolean solved = findTransition(startWord, finishWord, new DictionaryImp(dictionary), memory, startIndex);
-        System.out.println(" solved: " + solved + " solution: " + memory);
     }
 
     public static boolean findTransition(String fromWord, String toWord, Dictionary dictionary, List<String> answerMemory, int position) {
@@ -104,5 +60,10 @@ public final class WordTool {
             ch = (char) (inputChar + 1);
         } else ch = 'a';
         return ch;
+    }
+
+    public static boolean isEmpty(String str) {
+        return str == null || str.length() == 0;
+
     }
 }

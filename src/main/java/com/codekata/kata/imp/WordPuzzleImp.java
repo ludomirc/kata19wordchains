@@ -2,6 +2,7 @@ package com.codekata.kata.imp;
 
 import com.codekata.kata.Dictionary;
 import com.codekata.kata.WordPuzzle;
+import com.codekata.kata.exception.TechnicalException;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -12,10 +13,10 @@ import java.util.List;
  */
 public class WordPuzzleImp implements WordPuzzle {
 
-    Dictionary dictionary;
+    private Dictionary dictionary;
 
-    String wordFrom;
-    String wordTo;
+    private String wordFrom;
+    private String wordTo;
 
     public WordPuzzleImp(Dictionary dictionary, String wordFrom, String wordTo) {
         this.dictionary = dictionary;
@@ -38,7 +39,12 @@ public class WordPuzzleImp implements WordPuzzle {
     }
 
     @Override
-    public void setPuzzleWords(String wordFrom, String wordTo) {
+    public void setPuzzleWords(String wordFrom, String wordTo) throws TechnicalException {
+        if (WordTool.isEmpty(wordFrom) || WordTool.isEmpty(wordTo)) {
+            IllegalArgumentException exp = new IllegalArgumentException("parm wordFrom or wordTo is empty: " + wordFrom + " " + wordTo);
+            throw new TechnicalException(exp);
+        }
+
         this.wordFrom = wordFrom;
         this.wordTo = wordTo;
     }

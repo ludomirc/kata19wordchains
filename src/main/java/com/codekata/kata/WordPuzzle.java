@@ -1,5 +1,7 @@
 package com.codekata.kata;
 
+import com.codekata.kata.exception.AppException;
+
 import java.util.Collection;
 
 /**
@@ -7,5 +9,6 @@ import java.util.Collection;
  */
 public interface WordPuzzle {
     Collection<String> findTransition();
-    void setPuzzleWords(String begin, String end);
+
+    void setPuzzleWords(String begin, String end) throws AppException;
 }
