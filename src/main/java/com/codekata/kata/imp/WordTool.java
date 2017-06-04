@@ -1,4 +1,4 @@
-package com.codekata.kata;
+package com.codekata.kata.imp;
 
 import java.util.HashSet;
 import java.util.LinkedList;
