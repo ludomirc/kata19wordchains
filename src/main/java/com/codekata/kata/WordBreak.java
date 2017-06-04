@@ -34,8 +34,8 @@ public class WordBreak {
         dictionary.add("xood");
 
         WordBreak ws = new WordBreak();
-        String startWord = "cood";
-        String finishWord = "xood";
+        String startWord = "lead";
+        String finishWord = "gold";
 
 
         // create another HashSet so store the sub problems result
@@ -57,42 +57,40 @@ public class WordBreak {
 
             return true;
 
-        } else {
+        }
 
-            char currentChar = 'a';
-            char[] tmpWord = startWord.toCharArray();
-            String newWord = "";
+        char[] tmpWord = startWord.toCharArray();
+        char startChar = tmpWord[position];
+        char currentChar = setStartChar(startChar);
 
-            char startChar = tmpWord[position];
-            currentChar = setStartChar(startChar);
+        String newWord = "";
+        while (startChar != currentChar) {
 
-            while (startChar != currentChar) {
-
-                tmpWord[position] = currentChar;
-                newWord = new String(tmpWord);
-                System.out.println("position: " + position + " nWord: " + newWord);
+            tmpWord[position] = currentChar;
+            newWord = new String(tmpWord);
+            System.out.println("position: " + position + " nWord: " + newWord);
 
 
-                if (dictionary.contains(newWord)) {
-                    dictionary.remove(newWord);
+            if (dictionary.contains(newWord)) {
+                dictionary.remove(newWord);
 
-                    for (short i = 0; i < newWord.length(); i++) {
-                        if (findUsingDP(newWord, endWord, dictionary, answer + newWord + " ", i)) {
-                            myMemory.add(newWord);
-                            return true;
-                        }
+                for (short i = 0; i < newWord.length(); i++) {
+                    if (findUsingDP(newWord, endWord, dictionary, answer + newWord + " ", i)) {
+                        myMemory.add(newWord);
+                        return true;
                     }
                 }
-
-                currentChar++;
-
-                if (currentChar > 'z') {
-                    currentChar = 'a';
-                }
-
             }
-            return false;
+
+            currentChar++;
+
+            if (currentChar > 'z') {
+                currentChar = 'a';
+            }
+
         }
+        return false;
+
     }
 
     private char setStartChar(char startChar) {
