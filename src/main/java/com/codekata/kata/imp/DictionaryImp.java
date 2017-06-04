@@ -7,7 +7,10 @@ import com.codekata.kata.exception.TechnicalException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashSet;
 
 /**
@@ -16,7 +19,6 @@ import java.util.HashSet;
 public class DictionaryImp implements Dictionary {
 
     private static Logger logger = LogManager.getLogger(DictionaryImp.class.getName());
-
 
     private HashSet<String> dictionary;
 
@@ -29,6 +31,7 @@ public class DictionaryImp implements Dictionary {
     }
 
     protected void loadDictionary(InputStream dictionaryStream) throws AppException {
+
         logger.info("dictionary load...");
         if (dictionaryStream == null) {
             throw new TechnicalException(ErrorCode.ErrorCode_2001, ErrorCode.ErrorCode_2001.getMessage());
@@ -57,11 +60,7 @@ public class DictionaryImp implements Dictionary {
     }
 
     @Override
-    public Boolean isExist(CharSequence word) {
+    public Boolean contains(CharSequence word) {
         return dictionary.contains(word);
-    }
-
-    protected HashSet<String> getDictionary() {
-        return dictionary;
     }
 }

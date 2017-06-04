@@ -4,5 +4,5 @@ package com.codekata.kata;
  * Created by Benek on 18.05.2017.
  */
 public interface Dictionary {
-    Boolean isExist(CharSequence word);
+    Boolean contains(CharSequence word);
 }

@@ -1,5 +1,7 @@
 package com.codekata.kata.imp;
 
+import com.codekata.kata.Dictionary;
+
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -47,11 +49,11 @@ public final class WordTool {
 
         List<String> memory = new LinkedList<>();
 
-        boolean solved = findTransition(startWord, finishWord, dictionary, memory, startIndex);
+        boolean solved = findTransition(startWord, finishWord, null, memory, startIndex);
         System.out.println(" solved: " + solved + " solution: " + memory);
     }
 
-    public static boolean findTransition(String fromWord, String toWord, HashSet<String> dictionary, List<String> answerMemory, int position) {
+    public static boolean findTransition(String fromWord, String toWord, Dictionary dictionary, List<String> answerMemory, int position) {
 
         //found solution :)
         if (fromWord.compareTo(toWord) == 0) {

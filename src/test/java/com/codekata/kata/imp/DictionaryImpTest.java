@@ -38,7 +38,7 @@ public class DictionaryImpTest {
         dictionary.loadDictionary(DictionaryImpTest.class.getResourceAsStream("test-dictionary.txt"));
 
         String[] dic = new String[dictionary.size()];
-        assertEquals((boolean) dictionary.isExist(inputWorld), (boolean)expected,"input value: " + inputWorld + " expected value: " + expected +" dictionary size: " + dictionary.size());
+        assertEquals((boolean) dictionary.contains(inputWorld), (boolean) expected, "input value: " + inputWorld + " expected value: " + expected + " dictionary size: " + dictionary.size());
     }
 
 }
