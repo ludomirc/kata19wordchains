@@ -11,7 +11,6 @@ public enum ErrorCode {
     //Technical ErrorCode
     ErrorCode_2000("sample technical error message", 2000),
     ErrorCode_2001("directory or file not exist exception", 2001),
-    ErrorCode_2002("wrong number of input parameters", 2002),
 
     //Business ErrorCode
     ErrorCode_3000("sample business error message", 3000),
