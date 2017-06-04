@@ -49,7 +49,7 @@ public final class WordTool {
 
         List<String> memory = new LinkedList<>();
 
-        boolean solved = findTransition(startWord, finishWord, null, memory, startIndex);
+        boolean solved = findTransition(startWord, finishWord, new DictionaryImp(dictionary), memory, startIndex);
         System.out.println(" solved: " + solved + " solution: " + memory);
     }
 

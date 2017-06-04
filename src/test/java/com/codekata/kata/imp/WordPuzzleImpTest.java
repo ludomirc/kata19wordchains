@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Benek on 18.05.2017.
  */
-public class WordChainsImpTest {
+public class WordPuzzleImpTest {
 
 
     @Test
@@ -22,6 +22,7 @@ public class WordChainsImpTest {
 
         wordChains.setPuzzleWords("cat","dog");
         List<String> actual = (List<String>) wordChains.getChains();
+
 
     }
 
