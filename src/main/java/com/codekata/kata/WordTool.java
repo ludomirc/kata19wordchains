@@ -4,7 +4,11 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
-public class WordBreak {
+public final class WordTool {
+
+    private WordTool() {
+    }
+
 
     public static void main(String[] args) {
         short startIndex = 0;
@@ -37,34 +41,34 @@ public class WordBreak {
         dictionary.add("olo");
 
 
-        WordBreak ws = new WordBreak();
+        WordTool ws = new WordTool();
         String startWord = "cat";
         String finishWord = "dog";
 
         List<String> memory = new LinkedList<>();
 
-        boolean solved = ws.findUsingDP(startWord, finishWord, dictionary, memory, startIndex);
+        boolean solved = findTransition(startWord, finishWord, dictionary, memory, startIndex);
         System.out.println(" solved: " + solved + " solution: " + memory);
     }
 
-    public boolean findUsingDP(String startWord, String endWord, HashSet<String> dictionary, List<String> answerMemory, int position) {
+    public static boolean findTransition(String fromWord, String toWord, HashSet<String> dictionary, List<String> answerMemory, int position) {
 
         //found solution :)
-        if (startWord.compareTo(endWord) == 0) {
-            answerMemory.add(startWord);
+        if (fromWord.compareTo(toWord) == 0) {
+            answerMemory.add(fromWord);
             return true;
         }
 
         //bad path, word in memory
-        if (answerMemory.contains(startWord)) {
+        if (answerMemory.contains(fromWord)) {
             return false;
         }
 
         //add candidate path to memory
-        answerMemory.add(startWord);
+        answerMemory.add(fromWord);
 
-        for (int tmpPosition = position; tmpPosition < startWord.length(); tmpPosition++) {
-            char[] tmpWord = startWord.toCharArray();
+        for (int tmpPosition = position; tmpPosition < fromWord.length(); tmpPosition++) {
+            char[] tmpWord = fromWord.toCharArray();
             char startChar = tmpWord[tmpPosition];
             char currentChar = shiftChar(startChar);
 
@@ -76,7 +80,7 @@ public class WordBreak {
 
                 if (dictionary.contains(newWord)) {
                     for (short i = 0; i < newWord.length(); i++) {
-                        if (findUsingDP(newWord, endWord, dictionary, answerMemory, i)) {
+                        if (findTransition(newWord, toWord, dictionary, answerMemory, i)) {
                             return true;
                         }
                     }
@@ -87,12 +91,12 @@ public class WordBreak {
         }
 
         //remove form memory, bad path
-        answerMemory.remove(startWord);
+        answerMemory.remove(fromWord);
         return false;
 
     }
 
-    private char shiftChar(char inputChar) {
+    private static char shiftChar(char inputChar) {
         char ch;
         if (inputChar < 'z') {
             ch = (char) (inputChar + 1);
