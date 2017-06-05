@@ -12,8 +12,9 @@ import java.util.List;
 public class Puzzle {
 
     public static void main(String[] args) throws AppException {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext
-                ("META-INF/spring/app-context.xml");
+
+        String appConfig = "META-INF/spring/app-context.xml";
+        ApplicationContext ctx = new ClassPathXmlApplicationContext(appConfig);
         WordPuzzle puzzle = ctx.getBean("puzzle", WordPuzzle.class);
         puzzle.setPuzzleWords("ala", "ola");
         List<String> solution = (List<String>) puzzle.findTransition();
