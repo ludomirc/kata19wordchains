@@ -45,6 +45,9 @@ public class WordPuzzleImp implements WordPuzzle {
             throw new TechnicalException(exp);
         }
 
+        wordFrom.toLowerCase();
+        wordTo.toLowerCase();
+
         this.wordFrom = wordFrom;
         this.wordTo = wordTo;
     }

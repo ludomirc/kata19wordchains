@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="dicFilePath" class="java.lang.String" factory-method="valueOf">
+        <constructor-arg value="d:\workspace\edukacja\codekata\kata\kata19wordchains\src\main\resources\words.txt "/>
+    </bean>
+
+    <bean id="dictionary" class="org.qbit.codekata.kata.imp.DictionaryImp">
+        <constructor-arg ref="dicFilePath"/>
+    </bean>
+    <bean id="puzzle" class="org.qbit.codekata.kata.imp.WordPuzzleImp">
+        <constructor-arg ref="dictionary"/>
+    </bean>
+</beans>

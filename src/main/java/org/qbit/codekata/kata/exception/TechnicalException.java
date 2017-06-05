@@ -21,7 +21,11 @@ public class TechnicalException extends AppException {
         super(cause);
     }
 
-    public TechnicalException(Throwable cause, ErrorCode errorCode_2003, String s) {
-        super(cause, errorCode_2003, s);
+    public TechnicalException(ErrorCode errorCode, Throwable cause) {
+        super(cause, errorCode);
+    }
+
+    public TechnicalException(ErrorCode errorCode, String message, Throwable cause) {
+        super(cause, errorCode, message);
     }
 }

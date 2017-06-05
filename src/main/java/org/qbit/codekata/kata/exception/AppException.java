@@ -27,6 +27,11 @@ public class AppException extends Exception {
         this.errorCode = errorCode;
     }
 
+    public AppException(Throwable cause, ErrorCode errorCode) {
+        super(errorCode.getCodeId() + ", " + errorCode.getMessage() + ", message: " + errorCode.getMessage(), cause);
+        this.errorCode = errorCode;
+    }
+
     public AppException(Throwable cause) {
         super(cause);
         extractErrorCode(cause);

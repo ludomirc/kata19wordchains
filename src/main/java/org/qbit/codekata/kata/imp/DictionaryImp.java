@@ -7,10 +7,7 @@ import org.qbit.codekata.kata.exception.AppException;
 import org.qbit.codekata.kata.exception.ErrorCode;
 import org.qbit.codekata.kata.exception.TechnicalException;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.HashSet;
 
 /**
@@ -24,6 +21,24 @@ public class DictionaryImp implements Dictionary {
 
     public DictionaryImp() {
         dictionary = new HashSet<String>();
+    }
+
+    public DictionaryImp(String filePath) throws AppException {
+
+        dictionary = new HashSet<String>();
+
+        try (FileInputStream fis = new FileInputStream(filePath)) {
+
+            loadDictionary(fis);
+        } catch (FileNotFoundException e) {
+            TechnicalException tex = new TechnicalException(ErrorCode.ErrorCode_2001, ErrorCode.ErrorCode_2001.getMessage() + ": " + filePath, e);
+            logger.error(tex);
+            throw tex;
+        } catch (IOException e) {
+            TechnicalException tex = new TechnicalException(e);
+            logger.error(tex);
+            throw tex;
+        }
     }
 
     public DictionaryImp(HashSet<String> dictionary) {
