@@ -1,10 +1,10 @@
-package com.codekata.kata.imp;
+package org.qbit.codekata.kata.imp;
 
-import com.codekata.kata.WordPuzzle;
-import com.codekata.kata.exception.AppException;
-import com.codekata.kata.exception.TechnicalException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.qbit.codekata.kata.WordPuzzle;
+import org.qbit.codekata.kata.exception.AppException;
+import org.qbit.codekata.kata.exception.TechnicalException;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

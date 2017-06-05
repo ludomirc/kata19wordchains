@@ -1,8 +1,8 @@
-package com.codekata.kata.imp;
+package org.qbit.codekata.kata.imp;
 
-import com.codekata.kata.exception.AppException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.qbit.codekata.kata.exception.AppException;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

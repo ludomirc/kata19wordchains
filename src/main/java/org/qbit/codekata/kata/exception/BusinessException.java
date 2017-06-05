@@ -1,4 +1,4 @@
-package com.codekata.kata.exception;
+package org.qbit.codekata.kata.exception;
 
 /**
  * Created by Benek on 13.04.2017.

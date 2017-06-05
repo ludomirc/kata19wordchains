@@ -1,6 +1,4 @@
-package com.codekata.kata;
-
-import static org.testng.Assert.*;
+package org.qbit.codekata.kata;
 
 /**
  * Created by Benek on 18.05.2017.

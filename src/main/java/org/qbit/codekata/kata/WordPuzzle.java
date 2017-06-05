@@ -1,6 +1,6 @@
-package com.codekata.kata;
+package org.qbit.codekata.kata;
 
-import com.codekata.kata.exception.AppException;
+import org.qbit.codekata.kata.exception.AppException;
 
 import java.util.Collection;
 

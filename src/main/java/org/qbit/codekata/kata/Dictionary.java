@@ -1,4 +1,4 @@
-package com.codekata.kata;
+package org.qbit.codekata.kata;
 
 /**
  * Created by Benek on 18.05.2017.

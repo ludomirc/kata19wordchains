@@ -1,11 +1,11 @@
-package com.codekata.kata.imp;
+package org.qbit.codekata.kata.imp;
 
-import com.codekata.kata.Dictionary;
-import com.codekata.kata.exception.AppException;
-import com.codekata.kata.exception.ErrorCode;
-import com.codekata.kata.exception.TechnicalException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.qbit.codekata.kata.Dictionary;
+import org.qbit.codekata.kata.exception.AppException;
+import org.qbit.codekata.kata.exception.ErrorCode;
+import org.qbit.codekata.kata.exception.TechnicalException;
 
 import java.io.BufferedReader;
 import java.io.IOException;

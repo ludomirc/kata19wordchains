@@ -1,4 +1,4 @@
-package com.codekata.kata;
+package org.qbit.codekata.kata;
 
 import org.testng.annotations.Test;
 

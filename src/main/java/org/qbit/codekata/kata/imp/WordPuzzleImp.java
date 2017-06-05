@@ -1,8 +1,8 @@
-package com.codekata.kata.imp;
+package org.qbit.codekata.kata.imp;
 
-import com.codekata.kata.Dictionary;
-import com.codekata.kata.WordPuzzle;
-import com.codekata.kata.exception.TechnicalException;
+import org.qbit.codekata.kata.Dictionary;
+import org.qbit.codekata.kata.WordPuzzle;
+import org.qbit.codekata.kata.exception.TechnicalException;
 
 import java.util.Collection;
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package com.codekata.kata.exception;
+package org.qbit.codekata.kata.exception;
 
 /**
  * Technical ErrorCode code format - Three-digit number, older number even.

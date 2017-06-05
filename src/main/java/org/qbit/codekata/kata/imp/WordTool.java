@@ -1,6 +1,6 @@
-package com.codekata.kata.imp;
+package org.qbit.codekata.kata.imp;
 
-import com.codekata.kata.Dictionary;
+import org.qbit.codekata.kata.Dictionary;
 
 import java.util.List;
 
